@@ -38,6 +38,11 @@ class Venue(BaseModel):
     creator: str = SemanticField(prefix="orcid")
     date: str = Field(..., pattern="^\\d{4}-\\d{2}-\\d{2}$", description="A date in YYYY-MM-DD format")
 
+    @property
+    def google_maps_link(self) -> str:
+        """Get a google maps link."""
+        return f"https://maps.google.com/?q={self.latitude},{self.longitude}"
+
 
 PREAMBLE = f"""\
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -129,6 +134,7 @@ def main():
                 f"geo:lat {venue.latitude}",
                 f"geo:long {venue.longitude}",
                 f"terms:creator orcid:{venue.creator}",
+                f"rdfs:seeAlso <{venue.google_maps_link}>",
             ]
             city_geonames_ids.add(venue.city_geonames)
             creator_orcids.add(venue.creator)
