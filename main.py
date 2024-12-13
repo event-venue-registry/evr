@@ -37,6 +37,7 @@ class Venue(BaseModel):
     address: str
     creator: str = SemanticField(prefix="orcid")
     date: str = Field(..., pattern="^\\d{4}-\\d{2}-\\d{2}$", description="A date in YYYY-MM-DD format")
+    homepage: str | None = Field(None)
 
     @property
     def google_maps_link(self) -> str:
@@ -144,6 +145,8 @@ def main():
                 parts.insert(2, f"rdfs:label \"{venue.local_name}\"@{venue.lang}")
             if venue.osm_way:
                 parts.append(f"skos:exactMatch osmw:{venue.osm_way}")
+            if venue.homepage:
+                parts.append(f"foaf:homepage <{venue.homepage}>")
             outfile.write(f"evr:{venue.id} " + " ;\n    ".join(parts) + " .\n\n")
 
         for city_geonames_id in tqdm(sorted(city_geonames_ids), unit="city"):
