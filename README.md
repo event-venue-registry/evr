@@ -17,7 +17,7 @@ Who does this benefit?
 
 ## License
 
-CC0
+Code under MIT, data under CC0
 
 ## TODO
 
