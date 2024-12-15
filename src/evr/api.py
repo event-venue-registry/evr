@@ -18,11 +18,10 @@ OUTPUT = ROOT.joinpath("output")
 OUTPUT.mkdir(exist_ok=True)
 ONTOLOGY_TTL_PATH = OUTPUT.joinpath("venues.ttl")
 ONTOLOGY_OWL_PATH = OUTPUT.joinpath("venues.owl")
-ONTOLOGY_OBO_PATH = OUTPUT.joinpath("venues.obo")
 
 PREFIX = "EVR"
-BASE_IRI = "https://w3id.org/venue/id/"
-ONTOLOGY_IRI = "https://w3id.org/venue/venue.ttl"
+BASE_IRI = "https://w3id.org/evr/venue/"
+ONTOLOGY_IRI = "https://w3id.org/evr/evr.ttl"
 
 PREAMBLE = f"""\
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -152,7 +151,9 @@ def main(path: Path | None) -> None:
     from bioontologies import robot
 
     robot.convert(ONTOLOGY_TTL_PATH, ONTOLOGY_OWL_PATH)
-    robot.convert(ONTOLOGY_TTL_PATH, ONTOLOGY_OBO_PATH)
+
+    # Note: OBO isn't exported since ROBOT/OWLAPI
+    # doesn't support [Instance] stanzas
 
 
 if __name__ == "__main__":

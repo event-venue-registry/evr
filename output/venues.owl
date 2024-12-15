@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/venue/venue.ttl#"
+     xml:base="https://w3id.org/venue/venue.ttl"
+     xmlns:RO="http://purl.obolibrary.org/obo/RO_"
+     xmlns:IAO="http://purl.obolibrary.org/obo/IAO_"
+     xmlns:evr="https://w3id.org/venue/id/"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:city="http://purl.obolibrary.org/obo/ENVO_00000856"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:osmw="https://www.openstreetmap.org/way/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:human="http://purl.obolibrary.org/obo/NCBITaxon_9606"
+     xmlns:orcid="https://orcid.org/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:venue="http://purl.obolibrary.org/obo/ENVO_03501127"
+     xmlns:schema="https://schema.org/"
+     xmlns:address="https://schema.org/streetAddress"
+     xmlns:geonames="https://www.geonames.org/"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+     xmlns:wikidata="http://www.wikidata.org/entity/">
+    <owl:Ontology rdf:about="https://w3id.org/venue/venue.ttl">
+        <obo:IAO_0000700 rdf:resource="http://purl.obolibrary.org/obo/ENVO_03501127"/>
+        <terms:creator rdf:resource="https://orcid.org/0000-0003-4423-4370"/>
+        <terms:description>An ontology representation of the Event Venue Registry</terms:description>
+        <terms:license rdf:resource="https://creativecommons.org/publicdomain/zero/1.0/"/>
+        <terms:title>Event Venue Registry</terms:title>
+        <rdfs:comment>Built by https://github.com/cthoyt/event-venue-registry</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000700 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000700">
+        <rdfs:label>ontology root</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+        <rdfs:label>label</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#lat -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat">
+        <rdfs:label>latitude</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#long -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#long">
+        <rdfs:label>longitude</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#exactMatch -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#exactMatch">
+        <rdfs:label>exact match</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/homepage -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/homepage"/>
+    
+
+
+    <!-- https://schema.org/streetAddress -->
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/streetAddress">
+        <rdfs:label>street address</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0001025 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0001025">
+        <rdfs:label>located in</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ENVO_00000856 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ENVO_00000856">
+        <rdfs:label>city</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ENVO_03501127 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ENVO_03501127">
+        <rdfs:label>conference venue</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon_9606 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606">
+        <rdfs:label>Homo sapiens</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://orcid.org/0000-0003-4423-4370 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0003-4423-4370">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+        <rdfs:label>Charles Tapley Hoyt</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/venue/id/0000001 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/venue/id/0000001">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ENVO_03501127"/>
+        <obo:RO_0001025 rdf:resource="https://www.geonames.org/3171728"/>
+        <terms:creator rdf:resource="https://orcid.org/0000-0003-4423-4370"/>
+        <rdfs:label xml:lang="it">Centro Culturale Altinate/San Gaetano</rdfs:label>
+        <rdfs:label xml:lang="en">Cultural Center Altinate/San Gaetano</rdfs:label>
+        <rdfs:seeAlso rdf:resource="https://maps.google.com/?q=45.4086547,11.882047814121277"/>
+        <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">45.4086547</geo:lat>
+        <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">11.882047814121277</geo:long>
+        <skos:exactMatch rdf:resource="http://www.wikidata.org/entity/Q3664800"/>
+        <skos:exactMatch rdf:resource="https://www.openstreetmap.org/way/131987899"/>
+        <foaf:homepage rdf:resource="https://www.altinatesangaetano.it/en"/>
+        <schema:streetAddress>Via Altinate, 71, 35121 Padua PD, Italy</schema:streetAddress>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/venue/id/0000002 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/venue/id/0000002">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ENVO_03501127"/>
+        <obo:RO_0001025 rdf:resource="https://www.geonames.org/4393217"/>
+        <terms:creator rdf:resource="https://orcid.org/0000-0003-4423-4370"/>
+        <rdfs:label xml:lang="en">Stowers Institute</rdfs:label>
+        <rdfs:seeAlso rdf:resource="https://maps.google.com/?q=39.0371088,-94.57549857555122"/>
+        <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">39.0371088</geo:lat>
+        <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-94.57549857555122</geo:long>
+        <skos:exactMatch rdf:resource="http://www.wikidata.org/entity/Q7620704"/>
+        <skos:exactMatch rdf:resource="https://www.openstreetmap.org/way/356666501"/>
+        <foaf:homepage rdf:resource="https://www.stowers.org/"/>
+        <schema:streetAddress>East 50th Street 1000, Kansas City, Missouri, USA</schema:streetAddress>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.geonames.org/3171728 -->
+
+    <owl:NamedIndividual rdf:about="https://www.geonames.org/3171728">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ENVO_00000856"/>
+        <rdfs:label>Padova</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.geonames.org/4393217 -->
+
+    <owl:NamedIndividual rdf:about="https://www.geonames.org/4393217">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ENVO_00000856"/>
+        <rdfs:label>Kansas City</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25) https://github.com/owlcs/owlapi -->
+
