@@ -41,6 +41,10 @@ This is similar to how ORCID assigns PIDs to researchers and ROR assigns PIDs to
 This benefits researchers assembling information about in-person conferences and events by
 enabling them to refer in an unambiguous way to the venue where it takes place.
 
+This repository follows
+the [Open Data, Open Code, Open Infrastructure (O3) principles](https://www.nature.com/articles/s41597-024-03406-w),
+meaning that the data and code are all in one repository that anyone can contribute to.
+
 ## 💪 Getting Started
 
 Get all venues with:
@@ -218,7 +222,7 @@ You only have to do the following steps once.
 
 #### Configuring your machine's connection to PyPI
 
-You have to do the following steps once per machine. 
+You have to do the following steps once per machine.
 
 ```console
 $ uv tool install keyring
