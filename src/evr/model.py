@@ -29,13 +29,13 @@ class Venue(BaseModel):
         None, description="The language of the non-english local name for the venue"
     )
     country: CountryAlpha2
-    city_geonames: str = SemanticField(prefix="geonames")
+    city_geonames: str = SemanticField(prefix="geonames")  # type:ignore[assignment]
     latitude: Latitude
     longitude: Longitude
-    wikidata: str | None = SemanticField(default=None, prefix="wikidata")
+    wikidata: str | None = SemanticField(default=None, prefix="wikidata")  # type:ignore[assignment]
     osm_way: str | None = Field(None)
     address: str
-    creator: str = SemanticField(prefix="orcid")
+    creator: str = SemanticField(prefix="orcid")  # type:ignore[assignment]
     date: str = Field(
         ..., pattern="^\\d{4}-\\d{2}-\\d{2}$", description="A date in YYYY-MM-DD format"
     )

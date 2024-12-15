@@ -3,8 +3,6 @@
 from pathlib import Path
 
 import click
-from bioontologies import robot
-from pyobo import get_name
 from tqdm import tqdm
 
 from evr.model import load_venues
@@ -101,6 +99,8 @@ def _get_orcid_name(orcid: str) -> str | None:
 
 def export_ontology(output_path: Path, *, input_path: Path | None = None) -> None:
     """Export EVR as an ontology."""
+    from pyobo import get_name
+
     venues = load_venues(path=input_path)
     with output_path.open("w") as outfile:
         print(PREAMBLE, file=outfile)
@@ -148,6 +148,9 @@ def export_ontology(output_path: Path, *, input_path: Path | None = None) -> Non
 def main(path: Path | None) -> None:
     """Export EVR as an ontology."""
     export_ontology(input_path=path, output_path=ONTOLOGY_TTL_PATH)
+
+    from bioontologies import robot
+
     robot.convert(ONTOLOGY_TTL_PATH, ONTOLOGY_OWL_PATH)
     robot.convert(ONTOLOGY_TTL_PATH, ONTOLOGY_OBO_PATH)
 
