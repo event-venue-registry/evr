@@ -1,18 +1,22 @@
-from pathlib import Path
-import csv
+"""A data model and export scripts for EVR."""
 
-from pydantic import BaseModel, Field
-from pydantic_extra_types.country import CountryAlpha2
-from semantic_pydantic import SemanticField
-from pydantic_extra_types.coordinate import Latitude, Longitude
-from pydantic_extra_types.language_code import LanguageAlpha2
-from tqdm import tqdm
-from pyobo import get_name
+from pathlib import Path
+
+import click
 from bioontologies import robot
+from pyobo import get_name
+from tqdm import tqdm
+
+from evr.model import load_venues
+
+__all__ = [
+    "export_ontology",
+    "main",
+]
 
 HERE = Path(__file__).parent.resolve()
-ENTRIES = HERE.joinpath("venues.tsv")
-OUTPUT = HERE.joinpath("output")
+ROOT = HERE.parent.parent.resolve()
+OUTPUT = ROOT.joinpath("output")
 OUTPUT.mkdir(exist_ok=True)
 ONTOLOGY_TTL_PATH = OUTPUT.joinpath("venues.ttl")
 ONTOLOGY_OWL_PATH = OUTPUT.joinpath("venues.owl")
@@ -21,29 +25,6 @@ ONTOLOGY_OBO_PATH = OUTPUT.joinpath("venues.obo")
 PREFIX = "EVR"
 BASE_IRI = "https://w3id.org/venue/id/"
 ONTOLOGY_IRI = "https://w3id.org/venue/venue.ttl"
-
-
-class Venue(BaseModel):
-    id: str = Field(..., pattern="^\\d{7}$")
-    name: str = Field(..., description="An english name for the venue")
-    local_name: str | None = Field(None, description="The non-english local name for the venue")
-    lang: LanguageAlpha2 | None = Field(None, description="The language of the non-english local name for the venue")
-    country: CountryAlpha2
-    city_geonames: str = SemanticField(prefix="geonames")
-    latitude: Latitude
-    longitude: Longitude
-    wikidata: str | None = SemanticField(default=None, prefix="wikidata")
-    osm_way: str | None = Field(None)
-    address: str
-    creator: str = SemanticField(prefix="orcid")
-    date: str = Field(..., pattern="^\\d{4}-\\d{2}-\\d{2}$", description="A date in YYYY-MM-DD format")
-    homepage: str | None = Field(None)
-
-    @property
-    def google_maps_link(self) -> str:
-        """Get a google maps link."""
-        return f"https://maps.google.com/?q={self.latitude},{self.longitude}"
-
 
 PREAMBLE = f"""\
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -118,19 +99,18 @@ def _get_orcid_name(orcid: str) -> str | None:
     return None
 
 
-def main():
-    with ENTRIES.open() as file, ONTOLOGY_TTL_PATH.open("w") as outfile:
-        reader = csv.DictReader(file, delimiter="\t")
+def export_ontology(output_path: Path, *, input_path: Path | None = None) -> None:
+    """Export EVR as an ontology."""
+    venues = load_venues(path=input_path)
+    with output_path.open("w") as outfile:
         print(PREAMBLE, file=outfile)
         city_geonames_ids: set[str] = set()
         creator_orcids: set[str] = set()
-        for data in tqdm(reader, unit="venue"):
-            data = {k: v for k, v in data.items() if k and v}
-            venue = Venue.model_validate(data)
+        for venue in venues:
             parts = [
                 "a venue:",
-                f"rdfs:label \"{venue.name}\"@en",
-                f"address: \"{venue.address}\"",
+                f'rdfs:label "{venue.name}"@en',
+                f'address: "{venue.address}"',
                 f"RO:0001025 geonames:{venue.city_geonames}",
                 f"geo:lat {venue.latitude}",
                 f"geo:long {venue.longitude}",
@@ -142,7 +122,7 @@ def main():
             if venue.wikidata:
                 parts.append(f"skos:exactMatch wikidata:{venue.wikidata}")
             if venue.local_name and venue.lang:
-                parts.insert(2, f"rdfs:label \"{venue.local_name}\"@{venue.lang}")
+                parts.insert(2, f'rdfs:label "{venue.local_name}"@{venue.lang}')
             if venue.osm_way:
                 parts.append(f"skos:exactMatch osmw:{venue.osm_way}")
             if venue.homepage:
@@ -151,18 +131,26 @@ def main():
 
         for city_geonames_id in tqdm(sorted(city_geonames_ids), unit="city"):
             city_name = get_name("geonames", city_geonames_id)
-            outfile.write(f"geonames:{city_geonames_id} a city: ; rdfs:label \"{city_name}\" .\n\n")
+            outfile.write(f'geonames:{city_geonames_id} a city: ; rdfs:label "{city_name}" .\n\n')
+
+        # TODO city to country "located in" link
 
         for orcid in tqdm(sorted(creator_orcids), unit="person"):
             person_name = _get_orcid_name(orcid)
             if person_name:
-                outfile.write(f"orcid:{orcid} a human: ; rdfs:label \"{person_name}\" .\n\n")
+                outfile.write(f'orcid:{orcid} a human: ; rdfs:label "{person_name}" .\n\n')
             else:
                 outfile.write(f"orcid:{orcid} a human: .\n\n")
 
+
+@click.command()
+@click.option("--path", type=Path)
+def main(path: Path | None) -> None:
+    """Export EVR as an ontology."""
+    export_ontology(input_path=path, output_path=ONTOLOGY_TTL_PATH)
     robot.convert(ONTOLOGY_TTL_PATH, ONTOLOGY_OWL_PATH)
     robot.convert(ONTOLOGY_TTL_PATH, ONTOLOGY_OBO_PATH)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

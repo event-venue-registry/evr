@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/cthoyt/cookiecutter-snekpack",
+  "commit": "bbb4bfe129576976e27e5aba736531bbf53b5ff5",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "package_name": "evr",
+      "package_name_stylized": "Event Venue Registry",
+      "short_description": "An open, community-driven venue of conference and event venues",
+      "author_name": "Charles Tapley Hoyt",
+      "author_github": "cthoyt",
+      "author_email": "cthoyt@gmail.com",
+      "github_organization_name": "cthoyt",
+      "github_repository_name": "evr",
+      "command_line_interface": true,
+      "gitlab": false,
+      "runner": "tox",
+      "__runner": "tox -e",
+      "__runner_uv": "--with tox-uv tox -e",
+      "__runner_pip": "tox tox-uv",
+      "__runner_tests": "py",
+      "__gh_slug": "cthoyt/evr",
+      "_template": "https://github.com/cthoyt/cookiecutter-snekpack"
+    }
+  },
+  "directory": null
+}
