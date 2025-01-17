@@ -5,7 +5,8 @@ import unittest
 from pathlib import Path
 
 from evr import Venue, load_venues
-from evr.model import COLUMNS, VENUES_PATH, append_venue
+from evr.data import VENUES_PATH
+from evr.model import COLUMNS, append_venue
 
 CHARLIE_ORCID = "0000-0003-4423-4370"
 

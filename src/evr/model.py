@@ -10,14 +10,14 @@ from pydantic_extra_types.language_code import LanguageAlpha2
 from semantic_pydantic import SemanticField
 from tqdm.auto import tqdm
 
+from evr.data import VENUES_PATH
+
 __all__ = [
     "Venue",
     "append_venue",
     "load_venues",
 ]
 
-HERE = Path(__file__).parent.resolve()
-VENUES_PATH = HERE.joinpath("venues.tsv")
 COLUMNS = [
     "id",
     "name",
