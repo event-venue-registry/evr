@@ -13,7 +13,7 @@ later, but that will cause problems--the code will get executed twice:
 .. seealso:: https://click.palletsprojects.com/en/8.1.x/setuptools/#setuptools-integration
 """
 
-from evr.api import main
+from evr.export_ontology import main
 
 __all__ = [
     "main",

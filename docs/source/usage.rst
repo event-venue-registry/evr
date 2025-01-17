@@ -1,4 +1,4 @@
 Usage
 =====
-.. automodule:: evr.api
+.. automodule:: evr.model
     :members:
