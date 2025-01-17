@@ -1,0 +1,103 @@
+format-version: 1.4
+idspace: dcterms http://purl.org/dc/terms/ "Dublin Core Metadata Initiative Terms"
+idspace: evr https://cthoyt.com/evr/ "Event Venue Registry"
+idspace: foaf http://xmlns.com/foaf/0.1/ "Friend of a Friend"
+idspace: geonames https://www.geonames.org/ "GeoNames"
+idspace: orcid https://orcid.org/ "Open Researcher and Contributor"
+idspace: schema https://schema.org/ "Schema.org"
+idspace: skos http://www.w3.org/2004/02/skos/core# "Simple Knowledge Organization System"
+idspace: spdx https://spdx.org/licenses/ "Software Package Data Exchange License"
+idspace: wgs84 http://www.w3.org/2003/01/geo/wgs84_pos# "WGS84 Geo Positioning"
+idspace: wikidata http://www.wikidata.org/entity/ "Wikidata"
+ontology: evr
+property_value: dcterms:title "Event Venue Registry" xsd:string
+property_value: dcterms:license "CC0-1.0" xsd:string
+property_value: dcterms:description "An open\\\, community-driven registry of conference and event venues.\\n\\nEVR assigns persistent identifiers \\\(PIDs\\\) to make referencing venues FAIR. This is similar to how ORCID assigns PIDs to researchers and ROR assigns PIDs to research organizations.\\n\\nThis benefits researchers assembling information about in-person conferences and events by enabling them to refer in an unambiguous way to the venue where it takes place.\\n\\nThis repository follows the \\\[Open Data\\\, Open Code\\\, Open Infrastructure \\\(O3\\\) principles\\\]\\\(https\\\://www.nature.com/articles/s41597-024-03406-w\\\)\\\, meaning that the data and code are all in one repository that anyone can contribute to." xsd:string
+property_value: IAO:0000700 ENVO:00000856
+property_value: IAO:0000700 ENVO:03501127
+property_value: rdfs:comment "Built by https\://github.com/cthoyt/event-venue-registry" xsd:string
+property_value: dcterms:license spdx:CCO-1.0
+
+[Typedef]
+id: foaf:homepage
+is_metadata_tag: true
+
+[Typedef]
+id: RO:0001025
+name: located in
+
+[Typedef]
+id: schema:streetAddress
+is_metadata_tag: true
+
+[Typedef]
+id: skos:exactMatch
+name: exact match
+is_metadata_tag: true
+
+[Typedef]
+id: wgs84:latititude
+range: xsd:decimal
+is_metadata_tag: true
+
+[Typedef]
+id: wgs84:longitude
+range: xsd:decimal
+is_metadata_tag: true
+
+[Term]
+id: ENVO:00000856
+name: city
+
+[Term]
+id: ENVO:03501127
+name: conference venue
+
+[Instance]
+id: evr:0000001
+name: Cultural Center Altinate/San Gaetano
+property_value: dcterms:contributor orcid:0000-0003-4423-4370
+property_value: foaf:homepage "https://www.altinatesangaetano.it/en" xsd:anyURI
+property_value: rdfs:seeAlso "https://maps.google.com/?q=45.4086547,11.882047814121277" xsd:anyURI
+property_value: schema:streetAddress "Via Altinate, 71, 35121 Padua PD, Italy" xsd:string
+property_value: skos:exactMatch wikidata:Q3664800
+property_value: wgs84:latititude "45.4086547" xsd:decimal
+property_value: wgs84:longitude "11.882047814121277" xsd:decimal
+instance_of: ENVO:03501127 ! conference venue
+relationship: RO:0001025 geonames:3171728 ! located in Padova
+
+[Instance]
+id: evr:0000002
+name: Stowers Institute
+property_value: dcterms:contributor orcid:0000-0003-4423-4370
+property_value: foaf:homepage "https://www.stowers.org/" xsd:anyURI
+property_value: rdfs:seeAlso "https://maps.google.com/?q=39.0371088,-94.57549857555122" xsd:anyURI
+property_value: schema:streetAddress "East 50th Street 1000, Kansas City, Missouri, USA" xsd:string
+property_value: skos:exactMatch wikidata:Q7620704
+property_value: wgs84:latititude "39.0371088" xsd:decimal
+property_value: wgs84:longitude "-94.57549857555122" xsd:decimal
+instance_of: ENVO:03501127 ! conference venue
+relationship: RO:0001025 geonames:4393217 ! located in Kansas City
+
+[Instance]
+id: geonames:3171728
+name: Padova
+instance_of: ENVO:00000856 ! city
+
+[Instance]
+id: geonames:4393217
+name: Kansas City
+instance_of: ENVO:00000856 ! city
+
+[Term]
+id: NCBITaxon:9606
+name: Homo sapiens
+
+[Instance]
+id: orcid:0000-0003-4423-4370
+name: Charles Tapley Hoyt
+instance_of: NCBITaxon:9606 ! Homo sapiens
+
+[Instance]
+id: orcid:0000-0003-4423-4370
+instance_of: NCBITaxon:9606 ! Homo sapiens

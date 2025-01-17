@@ -1,94 +1,101 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix terms: <http://purl.org/dc/terms/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
-@prefix wikidata: <http://www.wikidata.org/entity/> .
-@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix ENVO: <http://purl.obolibrary.org/obo/ENVO_> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
-@prefix orcid: <https://orcid.org/> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix evr: <https://cthoyt.com/evr/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix geonames: <https://www.geonames.org/> .
+@prefix orcid: <https://orcid.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
-@prefix osmw: <https://www.openstreetmap.org/way/> .
-@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix spdx: <https://spdx.org/licenses/> .
+@prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-@prefix evr: <https://w3id.org/venue/id/> .
-@prefix venue: <http://purl.obolibrary.org/obo/ENVO_03501127> .
-@prefix city: <http://purl.obolibrary.org/obo/ENVO_00000856> .
-@prefix human: <http://purl.obolibrary.org/obo/NCBITaxon_9606> .
-@prefix address: <https://schema.org/streetAddress> .
+IAO:0000700 a owl:AnnotationProperty ;
+    rdfs:label "has ontology root term" .
 
-<https://w3id.org/venue/venue.ttl> a owl:Ontology ;
-    terms:title "Event Venue Registry" ;
-    terms:description "An ontology representation of the Event Venue Registry" ;
-    terms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
-    IAO:0000700 venue: ;
-    terms:creator orcid:0000-0003-4423-4370 ;
+RO:0001025 a owl:ObjectProperty ;
+    rdfs:label "located in" .
+
+dcterms:contributor a owl:AnnotationProperty .
+
+dcterms:description a owl:AnnotationProperty .
+
+dcterms:license a owl:AnnotationProperty .
+
+dcterms:title a owl:AnnotationProperty .
+
+rdfs:comment a owl:AnnotationProperty .
+
+wgs84:latititude a owl:AnnotationProperty ;
+    rdfs:range xsd:decimal .
+
+wgs84:longitude a owl:AnnotationProperty ;
+    rdfs:range xsd:decimal .
+
+skos:exactMatch a owl:AnnotationProperty ;
+    rdfs:label "exact match" .
+
+foaf:homepage a owl:AnnotationProperty .
+
+evr:0000001 a ENVO:03501127,
+        owl:NamedIndividual ;
+    rdfs:label "Cultural Center Altinate/San Gaetano" ;
+    RO:0001025 geonames:3171728 ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    rdfs:seeAlso "https://maps.google.com/?q=45.4086547,11.882047814121277"^^xsd:anyURI ;
+    wgs84:latititude 45.4086547 ;
+    wgs84:longitude 11.882047814121277 ;
+    skos:exactMatch wikidata:Q3664800 ;
+    foaf:homepage "https://www.altinatesangaetano.it/en"^^xsd:anyURI ;
+    schema:streetAddress "Via Altinate, 71, 35121 Padua PD, Italy"^^xsd:string .
+
+evr:0000002 a ENVO:03501127,
+        owl:NamedIndividual ;
+    rdfs:label "Stowers Institute" ;
+    RO:0001025 geonames:4393217 ;
+    dcterms:contributor orcid:0000-0003-4423-4370 ;
+    rdfs:seeAlso "https://maps.google.com/?q=39.0371088,-94.57549857555122"^^xsd:anyURI ;
+    wgs84:latititude 39.0371088 ;
+    wgs84:longitude -94.57549857555122 ;
+    skos:exactMatch wikidata:Q7620704 ;
+    foaf:homepage "https://www.stowers.org/"^^xsd:anyURI ;
+    schema:streetAddress "East 50th Street 1000, Kansas City, Missouri, USA"^^xsd:string .
+
+schema:streetAddress a owl:AnnotationProperty .
+
+<https://w3id.org/biopragmatics/resources/evr/evr.ofn> a owl:Ontology ;
+    IAO:0000700 ENVO:00000856,
+        ENVO:03501127 ;
+    dcterms:description "An open\\, community-driven registry of conference and event venues.\\n\\nEVR assigns persistent identifiers \\(PIDs\\) to make referencing venues FAIR. This is similar to how ORCID assigns PIDs to researchers and ROR assigns PIDs to research organizations.\\n\\nThis benefits researchers assembling information about in-person conferences and events by enabling them to refer in an unambiguous way to the venue where it takes place.\\n\\nThis repository follows the \\[Open Data\\, Open Code\\, Open Infrastructure \\(O3\\) principles\\]\\(https\\://www.nature.com/articles/s41597-024-03406-w\\)\\, meaning that the data and code are all in one repository that anyone can contribute to."^^xsd:string ;
+    dcterms:license spdx:CCO-1.0,
+        "CC0-1.0"^^xsd:string ;
+    dcterms:title "Event Venue Registry"^^xsd:string ;
     rdfs:comment "Built by https://github.com/cthoyt/event-venue-registry"^^xsd:string .
 
-IAO:0000700 a owl:AnnotationProperty;
-    rdfs:label "ontology root"^^xsd:string .
+NCBITaxon:9606 a owl:Class ;
+    rdfs:label "Homo sapiens" .
 
-RO:0001025 a owl:ObjectProperty;
-    rdfs:label "located in"^^xsd:string .
+geonames:3171728 a ENVO:00000856,
+        owl:NamedIndividual ;
+    rdfs:label "Padova" .
 
-rdfs:label a owl:AnnotationProperty;
-    rdfs:label "label"^^xsd:string .
+geonames:4393217 a ENVO:00000856,
+        owl:NamedIndividual ;
+    rdfs:label "Kansas City" .
 
-skos:exactMatch a owl:AnnotationProperty;
-    rdfs:label "exact match"^^xsd:string .
+orcid:0000-0003-4423-4370 a NCBITaxon:9606,
+        owl:NamedIndividual ;
+    rdfs:label "Charles Tapley Hoyt" .
 
-geo:lat a owl:AnnotationProperty;
-    rdfs:label "latitude"^^xsd:string ;
-    owl:equivalentProperty schema:latitude ;
-    rdfs:range xsd:decimal .
+ENVO:00000856 a owl:Class ;
+    rdfs:label "city" .
 
-geo:long a owl:AnnotationProperty;
-    rdfs:label "longitude"^^xsd:string ;
-    owl:equivalentProperty schema:longitude ;
-    rdfs:range xsd:decimal .
-
-address: a owl:AnnotationProperty;
-    rdfs:label "street address"^^xsd:string .
-
-venue: a owl:Class;
-    rdfs:label "conference venue"^^xsd:string .
-
-city: a owl:Class;
-    rdfs:label "city"^^xsd:string .
-
-human: a owl:Class;
-    rdfs:label "Homo sapiens"^^xsd:string .
-
-
-evr:0000001 a venue: ;
-    rdfs:label "Cultural Center Altinate/San Gaetano"@en ;
-    rdfs:label "Centro Culturale Altinate/San Gaetano"@it ;
-    address: "Via Altinate, 71, 35121 Padua PD, Italy" ;
-    RO:0001025 geonames:3171728 ;
-    geo:lat 45.4086547 ;
-    geo:long 11.882047814121277 ;
-    terms:creator orcid:0000-0003-4423-4370 ;
-    rdfs:seeAlso <https://maps.google.com/?q=45.4086547,11.882047814121277> ;
-    skos:exactMatch wikidata:Q3664800 ;
-    skos:exactMatch osmw:131987899 ;
-    foaf:homepage <https://www.altinatesangaetano.it/en> .
-
-evr:0000002 a venue: ;
-    rdfs:label "Stowers Institute"@en ;
-    address: "East 50th Street 1000, Kansas City, Missouri, USA" ;
-    RO:0001025 geonames:4393217 ;
-    geo:lat 39.0371088 ;
-    geo:long -94.57549857555122 ;
-    terms:creator orcid:0000-0003-4423-4370 ;
-    rdfs:seeAlso <https://maps.google.com/?q=39.0371088,-94.57549857555122> ;
-    skos:exactMatch wikidata:Q7620704 ;
-    skos:exactMatch osmw:356666501 ;
-    foaf:homepage <https://www.stowers.org/> .
-
-geonames:3171728 a city: ; rdfs:label "Padova" .
-
-geonames:4393217 a city: ; rdfs:label "Kansas City" .
-
-orcid:0000-0003-4423-4370 a human: ; rdfs:label "Charles Tapley Hoyt" .
+ENVO:03501127 a owl:Class ;
+    rdfs:label "conference venue" .
 
