@@ -100,7 +100,7 @@ for more information on getting involved.
 
 ### ⚖️ License
 
-The code in this package is licensed under the MIT License.
+The code in this package is licensed under the MIT License. Data is licensed under CC0-1.0.
 
 <!--
 ### 📖 Citation
