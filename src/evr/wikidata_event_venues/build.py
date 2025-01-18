@@ -43,7 +43,7 @@ def df_from_sparql(sparql: str) -> pd.DataFrame:
 def _sort_key(v: str | None) -> tuple[int, str]:
     if v == "yes":
         return 0, ""
-    if pd.isna(v):
+    if pd.isna(v) or v is None:
         return 1, ""
     else:
         return 2, v
