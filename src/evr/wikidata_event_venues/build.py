@@ -70,10 +70,26 @@ def get_class_sparql(event_venue_class_qid: str) -> str:
     """Get SPARQL for the given event venue class."""
     return (
         dedent("""\
-        SELECT ?venue ?venueLabel
+        SELECT ?venue ?venueLabel ?countryCode ?place ?placeLabel ?address ?lon ?lat ?website ?osm_node ?osm_way ?osm_relation
         WHERE
         {
           ?venue wdt:P31/wdt:P279* wd:%s .
+          OPTIONAL { ?venue wdt:P17/wdt:P297 ?countryCode }
+          OPTIONAL {
+          # see https://en.wikibooks.org/wiki/SPARQL/WIKIDATA_Precision,_Units_and_Coordinates
+          ?venue p:P625 [
+             psv:P625 [
+               wikibase:geoLongitude ?lon;
+               wikibase:geoLatitude ?lat;
+             ] ;
+           ]
+          }
+          OPTIONAL { ?venue wdt:P6375 ?address }
+          OPTIONAL { ?venue wdt:P131 ?place }
+          OPTIONAL { ?venue wdt:P11693 ?osm_node }
+          OPTIONAL { ?venue wdt:P10689 ?osm_way }
+          OPTIONAL { ?venue wdt:P402 ?osm_relation }
+          OPTIONAL { ?venue wdt:P856 ?website }
           SERVICE wikibase:label {
             bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en".
           }
@@ -97,7 +113,10 @@ def get_event_venues_df() -> pd.DataFrame:
         df = df[df["venueLabel"].map(lambda x: not QID_RE.match(x))]
         dfs.append(df)
     rv = pd.concat(dfs)
-    rv = rv.sort_values("venue").drop_duplicates()
+    rv = rv.sort_values("venue")
+    # TODO aggregate on all fields but the venueType,
+    #  since it can inherit from multiple
+    rv = rv.drop_duplicates()
     rv.to_csv(EVENT_VENUES_PATH, sep="\t", index=False)
     return rv
 
